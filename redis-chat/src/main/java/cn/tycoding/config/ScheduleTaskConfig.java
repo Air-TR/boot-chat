@@ -4,6 +4,8 @@ import cn.tycoding.constant.CommonConstant;
 import cn.tycoding.entity.User;
 import cn.tycoding.service.ChatSessionService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -25,6 +27,9 @@ import java.util.List;
 @Configuration
 @EnableScheduling
 public class ScheduleTaskConfig {
+
+    private final static Logger log = LoggerFactory.getLogger(ScheduleTaskConfig.class);
+
     private static final Long MINUTE_30 = 1000 * 60 * 30L;
 
     @Autowired

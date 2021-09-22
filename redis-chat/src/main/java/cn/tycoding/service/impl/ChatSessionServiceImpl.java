@@ -8,6 +8,8 @@ import cn.tycoding.utils.CoreUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import java.util.*;
 @Slf4j
 @Service
 public class ChatSessionServiceImpl implements ChatSessionService {
+
+    private final static Logger log = LoggerFactory.getLogger(ChatSessionServiceImpl.class);
 
     @Autowired
     private StringRedisTemplate redisTemplate;

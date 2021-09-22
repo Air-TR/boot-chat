@@ -8,6 +8,8 @@ import cn.tycoding.utils.CoreUtil;
 import cn.tycoding.utils.R;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 @ServerEndpoint(value = "/chat/{id}")
 public class WebsocketServerEndpoint {
+
+    private final static Logger log = LoggerFactory.getLogger(WebsocketServerEndpoint.class);
 
     private static ChatSessionService chatSessionService;
     @Autowired
