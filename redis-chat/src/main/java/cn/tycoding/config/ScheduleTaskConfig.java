@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,13 +43,13 @@ public class ScheduleTaskConfig {
 
         List<User> userList = chatSessionService.onlineList();
         userList.forEach(user -> {
-            if ((new Date().getTime() - user.getId()) >= MINUTE_30) {
+            if ((System.currentTimeMillis() - user.getId()) >= MINUTE_30) {
                 chatSessionService.delete(user.getId().toString());
                 if (redisTemplate.boundValueOps(CommonConstant.CHAT_COMMON_PREFIX + user.getId()).get() != null) {
                     redisTemplate.delete(CommonConstant.CHAT_COMMON_PREFIX + user.getId());
                 }
                 if (redisTemplate.boundValueOps(CommonConstant.CHAT_FROM_PREFIX + user.getId()).get() != null) {
-                    redisTemplate.delete(CommonConstant.CHAT_FROM_PREFIX + user.getId());
+                    redisTemplate.delete(CommonConstant.CHAT_FROM_PREFIX + user.getId() + "*");
                 }
             }
         });
